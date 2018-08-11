@@ -1,3 +1,10 @@
 page-home {
-
+  ion-content {
+    background: url(../assets/imgs/east-road-sign.jpg) no-repeat center center fixed;
+    background-size: cover;
+  }
+  agm-map{
+    height: 400px;
+    width: 100%;
+  }
 }

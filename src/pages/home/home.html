@@ -1,14 +1,34 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Ionic Blank
+      Lista de Parqueaderos
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+  <agm-map [latitude]="4.687565" [longitude]="-74.061617" [zoom]="18">
+    <agm-marker [latitude]="4.687565" [longitude]="-74.061617">
+      <agm-info-window>
+        <div>
+          <strong>Nombre</strong>
+          <p>Direccion</p>
+        </div>
+      </agm-info-window>
+    </agm-marker>
+  </agm-map>
+  <ion-card *ngFor="let direccion of direcciones | async">
+    {{direccion | json}}
+    <ion-item>
+      <strong>{{direccion.nombre}}</strong>,
+      <p>{{direccion.direccion}}</p>
+      <ion-icon name="create" item-right (click)="editarDireccion(direccion.key)"></ion-icon>
+    </ion-item>
+
+  </ion-card>
+  <ion-fab bottom right>
+    <button ion-fab (click)="editarDireccion('nueva')">
+      <ion-icon name="add"></ion-icon>
+    </button>
+  </ion-fab>
 </ion-content>
